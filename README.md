@@ -3,6 +3,7 @@
 Welcome to the Literate Programming public repository, part of the Miage L3.
 
 ## Presentations
+<<<<<<< HEAD
 
 - [General Introduction](./Presentation/0-Introduction/Transp-Prog-Lit-2017.pdf) - Course overview, goals, references and reproducibility
 - [Literate Programming](./Presentation/1-LitProg/1_LitProg.pdf) - Literate Programming Motivation & RStudio Case Study
@@ -10,17 +11,16 @@ Welcome to the Literate Programming public repository, part of the Miage L3.
 ## TD Specifications
 
 ### TD1: Setup
+=======
+>>>>>>> 161f1f767842edb03bda0aeee670b07b256cea37
 
-1. Download and Install **git** and **RStudio** (take the free version)
-   - Git: https://git-scm.com/downloads
-     - _Understand git and Tutorial_: https://try.github.io/
-   - RStudio: https://www.rstudio.com/products/rstudio/download/
+- [General Introduction](./Presentation/0-Introduction/Transp-Prog-Lit-2017.pdf) - Course overview, goals, references and reproducibility
+- [Literate Programming](./Presentation/1-LitProg/1-LitProg.pdf) - Literate Programming Motivation & RStudio Case Study
+- [Data Representation](./Presentation/2-Visualization/main/Visualisation.2017.02.07.pdf) - Checklist for good graphics ([Slides for Discussion](./Presentation/2-Visualization/2-Visualization.pdf))
 
-2. Create a github account
-   - https://github.com/join
-     - Use as **login** something that uniquely identify yourself in Miage L3.
-   - Login with your new account in the http://github.com/
+## Specifications for *Travaux dirigés*
 
+<<<<<<< HEAD
 3. Add your public SSH key
    - Add it here: https://github.com/settings/keys
    - _Tutorial_: https://help.github.com/articles/connecting-to-github-with-ssh/
@@ -91,6 +91,12 @@ at running knitr in the document (through the appropriate feature in
 RStudio).
 
 ### TD4: Forthcoming
+=======
+1. [Git setup and kickoff](./TD1.espec.md)
+2. [Critical view for plots](./TD2.espec.md)
+3. [Using RStudio for running a Statistical Analysis](./TD3.espec.md)
+4. [Combining RStudio and The Grammar of Graphics (of ggplot2)](./TD4.espec.md)
+>>>>>>> 161f1f767842edb03bda0aeee670b07b256cea37
 
 ## Contact Information
 

@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 title: "Measuring and Analysis of Ping-Pong Time"
+=======
+title: "Measurement and Analysis of Ping-Pong Time"
+>>>>>>> 161f1f767842edb03bda0aeee670b07b256cea37
 author: "Jean-Marc Vincent, Lucas Mello Schnorr"
 date: "January 2017"
 output:

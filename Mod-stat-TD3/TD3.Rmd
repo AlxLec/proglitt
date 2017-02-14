@@ -3,9 +3,9 @@ title: "Measuring and Analysis of Ping-Pong Time"
 author: "Jean-Marc Vincent, Lucas Mello Schnorr"
 date: "January 2017"
 output:
-  html_document: default
   pdf_document:
     number_sections: yes
+  html_document: default
   word_document: default
 subtitle: A RStudio Demonstration and Statistical Analysis Draft
 geometry: margin=1.5in, top=0.5in, bottom=0.5in

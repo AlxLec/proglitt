@@ -17,6 +17,7 @@ Welcome to the Literate Programming public repository, part of the Miage L3.
 - [General Introduction](./Presentation/0-Introduction/Transp-Prog-Lit-2017.pdf) - Course overview, goals, references and reproducibility
 - [Literate Programming](./Presentation/1-LitProg/1-LitProg.pdf) - Literate Programming Motivation & RStudio Case Study
 - [Data Representation](./Presentation/2-Visualization/main/Visualisation.2017.02.07.pdf) - Checklist for good graphics ([Slides for Discussion](./Presentation/2-Visualization/2-Visualization.pdf))
+- [Data Manipulation](./Presentation/3-Manipulation/3-Manipulation.pdf) - Using the dplyr R package to manipulate data
 
 ## Specifications for *Travaux dirigés*
 
@@ -96,7 +97,11 @@ RStudio).
 2. [Critical view for plots](./TD2.espec.md)
 3. [Using RStudio for running a Statistical Analysis](./TD3.espec.md)
 4. [Combining RStudio and The Grammar of Graphics (of ggplot2)](./TD4.espec.md)
+<<<<<<< HEAD
 >>>>>>> 161f1f767842edb03bda0aeee670b07b256cea37
+=======
+5. [Data Manipulation with dplyr](./TD5.espec.md)
+>>>>>>> 057bdf3a00edc2865d139be6227b5f1f1ddc59da
 
 ## Contact Information
 

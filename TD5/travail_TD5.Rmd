@@ -50,7 +50,8 @@ df %>% select(-sexe);
 Now, let's use the _filter()_ verb (let's say we need only those of age 13):
 
 ```{r}
-df %>% filter(preusuel == "KYLLIAN");
+df %>% filter(preusuel == "BRUCE" & dpt == "38" & sexe =="1");
+        
 ```
 
 If we need to re-order, we can use _arrange()_ (you can pass multiple variables as well):

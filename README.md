@@ -103,6 +103,10 @@ RStudio).
 5. [Data Manipulation with dplyr](./TD5.espec.md)
 >>>>>>> 057bdf3a00edc2865d139be6227b5f1f1ddc59da
 
+## Additional resources
+
+- [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
+
 ## Contact Information
 
 If you encounter any problem, please contact the professors by e-mail:

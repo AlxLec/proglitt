@@ -1,6 +1,8 @@
 ---
 title: "TP6"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -70,6 +72,8 @@ experiment(6,100000) %>%
 ```{r}
 library(dplyr);
 library(magrittr);
+library(ggplot2);
+
 experiment <- function(faces = 6, n = 100)
 {
   dice1 <- dice(faces,n);
@@ -84,10 +88,9 @@ experiment <- function(faces = 6, n = 100)
 experiment(6,100000) %>%
   mutate(Som = Dice1 + Dice2 + Dice3) %>%
   ggplot(aes(x=as.factor(Som)))+
-    geom_bar(aes(y=(..count..)/som(..count..)),width=.3);+
-    xlab("Valeur de la somme") + ylab("Frequence")+
+    geom_bar(aes(y=(..count..)/sum(..count..)),width=.3) + xlab("Valeur de la somme") + ylab("Frequence")+
     ylim(0,NA)+
-    theme_bw()
+    theme_bw();
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

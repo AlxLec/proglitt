@@ -107,6 +107,10 @@ RStudio).
 
 - [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
 
+## Additional resources
+
+- [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
+
 ## Contact Information
 
 If you encounter any problem, please contact the professors by e-mail:

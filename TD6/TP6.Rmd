@@ -93,4 +93,34 @@ experiment(6,100000) %>%
     theme_bw();
 ```
 
+```{r calcule de l'erreur}
+library(dplyr);
+library(magrittr);
+library(ggplot2);
+
+experiment <- function(faces = 6, n = 100)
+{
+  dice1 <- dice(faces,n);
+  dice2 <- dice(faces,n);
+  dice3 <- dice(faces,n);
+  
+  data.frame(Dice1 = dice1,
+             Dice2 = dice2,
+             Dice3 = dice3);
+}
+# génère une expérience de 5 tirages de 3 dés à 6 faces
+experiment(6,100000) %>%
+  mutate(Som = Dice1 + Dice2 + Dice3) %>%
+  group_by(Som) %>%
+  
+  summarize(nbocc = n())%>%
+  mutate(Frequency = nbocc/100000)%>%
+  mutate(Variance = Frequency*(1-Frequency))%>%
+  mutate(Erreur = (qnorm(0.95)*sqrt(Variance))/sqrt(100000))%>%
+  
+  ggplot(aes(x = Frequency,y = Som,xmin = Frequency - Erreur,xmax = Frequency + Erreur))+
+    geom_errorbarh();
+# calcul erreur
+```
+
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

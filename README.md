@@ -18,6 +18,7 @@ Welcome to the Literate Programming public repository, part of the Miage L3.
 - [Literate Programming](./Presentation/1-LitProg/1-LitProg.pdf) - Literate Programming Motivation & RStudio Case Study
 - [Data Representation](./Presentation/2-Visualization/main/Visualisation.2017.02.07.pdf) - Checklist for good graphics ([Slides for Discussion](./Presentation/2-Visualization/2-Visualization.pdf))
 - [Data Manipulation](./Presentation/3-Manipulation/3-Manipulation.pdf) - Using the dplyr R package to manipulate data
+- [Probability / Statistics](./Presentation/4-RevProbability/3_introduction_to_statistics_sel.pdf) - an Introduction to Probability and Statistics (revision)
 
 ## Specifications for *Travaux dirigés*
 
@@ -101,6 +102,7 @@ RStudio).
 >>>>>>> 161f1f767842edb03bda0aeee670b07b256cea37
 =======
 5. [Data Manipulation with dplyr](./TD5.espec.md)
+<<<<<<< HEAD
 >>>>>>> 057bdf3a00edc2865d139be6227b5f1f1ddc59da
 
 ## Additional resources
@@ -110,6 +112,9 @@ RStudio).
 ## Additional resources
 
 - [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
+=======
+6. [Galilée et le Paradoxe du Duc de Toscane](./TD6.espec.md)
+>>>>>>> d103cefce6783a5fc8e7b95f73cf270b5a3ef141
 
 ## Additional resources
 

@@ -2,6 +2,10 @@
 
 Welcome to the Literate Programming public repository, part of the Miage L3.
 
+## Final Project
+
+- [Specification of the **Mini-Projet**](./Project.espec.md)
+
 ## Presentations
 <<<<<<< HEAD
 
@@ -114,7 +118,11 @@ RStudio).
 - [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
 =======
 6. [Galilée et le Paradoxe du Duc de Toscane](./TD6.espec.md)
+<<<<<<< HEAD
 >>>>>>> d103cefce6783a5fc8e7b95f73cf270b5a3ef141
+=======
+7. [Hypothesis Test : le Paradoxe du Duc de Toscane (la suite)](./TD7/TD7.Rmd)
+>>>>>>> 97f052e70af272e46f8274b3bc879278c930e7a9
 
 ## Additional resources
 

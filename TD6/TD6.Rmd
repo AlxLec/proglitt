@@ -193,9 +193,7 @@ generate <- function(n=1000,N=c(1,2,5,10,15,20,30,100), law=c("unif","binom","tr
 d=generate()
 ```
 
-```{r, echo=FALSE}
-ggplot(data=d,aes(x=SN)) + geom_histogram(aes(y = ..density..),binwidth=.05) + facet_grid(law~N) + theme_bw()
-```
+
 
 On converge donc bien vers un dirac. C'est la loi faible des grands nombres.
 

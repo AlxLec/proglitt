@@ -1,0 +1,309 @@
+---
+title: "ProjetFinal"
+output:
+  pdf_document: default
+  html_document: default
+---
+Projet Final de Modèle Statistique Alexandre Lecuyer-Adlane Badr Lakhdari
+
+                                                      Les Français de l'étranger
+
+Le jeu de donnée récupérer concerne les Français à l'étranger publié sur le site du Gouvernement Français "https://www.data.gouv.fr/fr/datasets/francais-de-l-etranger-inscriptions-au-registre-des-francais-etablis-hors-de-france-2001-2013/". Ces données ont été collectés par le Ministère des Affaires étrangères ( Direction des Français de l'étranger et de l'administration consulaire ).
+Les données contenues dans ces tableaux ont été récupéré via l'inscription au Registre, une démarche volontaire ouverte aux Français résidant à l'étranger, s'effectuant auprès du réseau des ambassades et consulats français. Toutefois, les Français ne s'étant pas inscrit n'apparaissent donc pas dans le jeu donnée.
+Il est intéressant de regarder comment évolue ces chiffres sur une période donnée ( 2001-2013). Ce fichier récupérer, il a été modifié, les pays sont regroupés par zones géographiques ( zone définis par l'ONU ).
+
+Les zones sont : 
+
+-Afrique du Nord          : Algérie, Libye, Maroc, Tunisie
+
+-Afrique Francophone      : Bénin, Burkina Faso, Burundi, Cameroun, République CentrAfricaine, Comores, Congo, Côte d'Ivoire, Djibouti, Gabon, Guinée, Madagascar, Mali, Maurice, Mauritanie, Niger, République démcratique du Congo, Rwanda, Sénégal, Tchad, Togo
+
+-Afrique Non Francophone  : Afrique du Sud, Angola, Bostawana, Cap Vert, Éthiopie, Ghana, Guinée-Bissau, Guinée Équatoriale, Kenya, Mozambique, Namibie, Nigeria, Ouganda, Seychelles, Soudan, Soudan du  Sud, Tanzanie, Zambie, Zimbabwe
+
+-Proche et Moyen-Orient   : Arabie saoudite, Bahreïn, Égypte, Émirats arabes unis, Iran, Irak, Israël, Jérusalem,Jordanie, Koweït, Liban, Oman, Qatar, Syrie, Yémen
+
+-Asie-Océanie             : Afghanistan, Australie, Bangladesh, Birmanie, Brunei, Cambodge, Chine, Corée du Sud, Fidji, Inde, Indonésie, Japon, Laos, Malaisie, Mongolie, Népal, Nouvelle-Zélande, Pakistan, Papouasie-Nouvelle-Guinée, Philipines, Singapour, Sri Lanka, Taïwan, Thaïlande, Vanuatu, Vietnam
+
+-Europe hors UE           : Albanie, Andorre, Arménie, Azerbaïdjan, Biélorussie, Bosnie-Herzégovine, Géorgie, Islande,Kazakhstan, Kosovo, Macédoine, Moldavie, Monaco, Monténégro, Norvége, Ouzbékistan, Russie, Saint-Siège, Serbie, Suisse, Tadjikistan, Turkménistan, Turquie, Ukraine
+
+-Union Européenne         : Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie, Danemark, Espagne, Estonie, Finlande, Grèce, Hongrie, Irlande, Italie, Lettonie, Lituanie, Luxembourg, Malte, Pays-Bas, Pologne, Portugal, Roumanie, Royaume-Uni, Slovaquie, Slovénie, Suède, République tchèque
+
+-Amérique Centrale-Sud    : Argentine, Bolivie, Brésil, Chili, Colombie, Costa Rica, Cuba, République dominicaine, Équateur, Guatemala, Haiti, Honduras, Jamaique, Mexique, Nicaragua, Panama, Paraguay, Pérou, Sainte-Lucie, Suriname, Trinité-et-Tobago, Uruguay, Venezuela
+
+-Amérique du Nord         : Canada, États-Unis d'Amérique
+
+```{r}
+library(dplyr);
+library(reshape2);
+dataf<-read.csv("FrancaisE.csv",sep = ";")
+melt(dataf,id.vars = "ZoneGéographique.Année")%>%
+mutate(Année = as.integer(gsub("X","",variable)))%>%
+select(-variable)%>%
+rename(ZoneGéographique = ZoneGéographique.Année)
+```
+
+
+Le tableau ci-dessus affiche le nombre de français à l'étranger par zone et par année.
+
+Le graphe ci-dessous, montre les différentes évolutions des Français sur la période 2001-2013 selon les différentes zones géographiques.
+On remarque immédiatement qu'il y a trois zones qui comportent le plus de Français, à savoir l'Union Européenne, l'Amérique du Nord et l'Europe hors UE.
+L'Afrique non Francophone, représente la zone comportant le moins de Français. 
+
+
+
+```{r}
+library(dplyr);
+library(reshape2);
+library(ggplot2);
+dataf<-read.csv("FrancaisE.csv",sep = ";")
+melt(dataf,id.vars = "ZoneGéographique.Année")%>%
+mutate(Année = as.integer(gsub("X","",variable)))%>%
+select(-variable)%>%
+rename(ZoneGéographique = ZoneGéographique.Année)%>%
+filter(ZoneGéographique!="Total")%>%
+ggplot(aes(x=as.factor(Année),y=value, colour=ZoneGéographique))+
+    geom_point()+
+    ylim(0,NA)+
+    geom_line() +
+    theme_dark()+
+    xlab("Année") +
+    ylab("Nombre de Français à l'étranger")
+```
+
+
+
+
+Ce graphe nous montre l'évolution total du nombre de Français à l'étranger au cours de la période 2001-2013.
+On remarque que l'évolution du nombre de français à l'étranger est globalement assimilable à une courbe strictement croissante. Toutefois, l'année 2007 fait office de baisse.
+
+```{r}
+library(dplyr);
+library(reshape2);
+library(ggplot2);
+dataf<-read.csv("FrancaisE.csv",sep = ";")
+melt(dataf,id.vars = "ZoneGéographique.Année")%>%
+mutate(Année = as.integer(gsub("X","",variable)))%>%
+select(-variable)%>%
+rename(ZoneGéographique = ZoneGéographique.Année)%>%
+filter(ZoneGéographique == "Total")%>%
+ggplot(aes(x=as.factor(Année),y=value,colour = ZoneGéographique))+
+    geom_point()+
+    ylim(0,NA)+
+    geom_line() +
+    theme_dark() +
+    xlab("Année") +
+    ylab("Nombre de Français Total")
+```
+
+
+
+
+Analyse : 
+
+Grâce à nos deux graphes et aux annexes, on observe que le nombre de français à l'étranger augmente globalement, hormis une baisse en 2OO7 comme on a pu le constater avec le graphe précédent. Cette diminution est également remarqué dans la plupart des annexes ( graphe ciblant une zone précise ).
+
+Cependant, on constate les limites de notre jeu de donnée : 
+- Les données sont incomplètes, les français ne s'étant pas inscrit au registre ne figurent pas dans le tableau
+- La baisse observé en 2007 n'a aucune explication. On peut émettre l'hypothèse que celle-ci est due à la crise financière mais ceci n'est confirmé ou confirmable, donc on ne peut avoir une réponse précise et juste.
+- L'augmentation constante du nombre de français à l'étranger ne peut être clairement et explicitement expliqué.
+
+Le jeu de données étant relativement simpliste qui montre seulement un nombre de personnes sans aucune information sur ces dites personne (sexe,age,catégorie socio-professionelle, raison du départ), nous ne pouvons donc apporter une réponse satisfaisante, claire et précise sur comment à évoluer le nombre de français à l'étranger sur la période 2001-2013.
+
+En conclusion, comme il a été dit dans notre analyse, la réponse à la question de l'évolution des Français à l'étranger est trop simple, non complète. Le jeu de donnée ne permet absolument une bonne analyse de la question, une connaissance approfondie des personnes inscrites et du nombre exact de français résidant à l'étranger. 
+
+
+
+
+
+
+
+Les graphes suivant ( les annexes 1 à 9 ), quand à eux, affiche le nombre de français à l'étranger par année pour une zone ciblée ( soit 9 zones ).
+
+Annexe 1 ( Évolution du nombre de Français dans la Zone Afrique du Nord ) : 
+```{r}
+library(dplyr);
+library(reshape2);
+library(ggplot2);
+dataf<-read.csv("FrancaisE.csv",sep = ";")
+melt(dataf,id.vars = "ZoneGéographique.Année")%>%
+mutate(Année = as.integer(gsub("X","",variable)))%>%
+select(-variable)%>%
+rename(ZoneGéographique = ZoneGéographique.Année)%>%
+filter(ZoneGéographique=="Afrique du Nord")%>%
+ggplot(aes(x=as.factor(Année),y=value, colour = ZoneGéographique))+
+    geom_point()+
+    ylim(0,NA)+
+    geom_line() +
+    theme_dark() +
+    xlab("Année") +
+    ylab("Nombre de Français dans la zone Afrique du Nord")
+```
+
+
+Annexe 2 (Évolution du nombre de Français dans la Zone Afrique francophone ) :
+```{r}
+library(dplyr);
+library(reshape2);
+library(ggplot2);
+dataf<-read.csv("FrancaisE.csv",sep = ";")
+melt(dataf,id.vars = "ZoneGéographique.Année")%>%
+mutate(Année = as.integer(gsub("X","",variable)))%>%
+select(-variable)%>%
+rename(ZoneGéographique = ZoneGéographique.Année)%>%
+filter(ZoneGéographique=="Afrique Francophone")%>%
+ggplot(aes(x=as.factor(Année),y=value, colour = ZoneGéographique))+
+    geom_point()+
+    ylim(0,NA)+
+    geom_line() +
+    theme_dark() +
+    xlab("Année") +
+    ylab("Nombre de Français dans la zone Afrique Francophone")
+```
+
+
+Annexe 3 (Évolution du nombre de Français dans la Zone Afrique non Francophone ) : 
+```{r}
+library(dplyr);
+library(reshape2);
+library(ggplot2);
+dataf<-read.csv("FrancaisE.csv",sep = ";")
+melt(dataf,id.vars = "ZoneGéographique.Année")%>%
+mutate(Année = as.integer(gsub("X","",variable)))%>%
+select(-variable)%>%
+rename(ZoneGéographique = ZoneGéographique.Année)%>%
+filter(ZoneGéographique=="Afrique Non Francophone")%>%
+ggplot(aes(x=as.factor(Année),y=value, colour = ZoneGéographique))+
+    geom_point()+
+    ylim(0,NA)+
+    geom_line() +
+    theme_dark() +
+    xlab("Année") +
+    ylab("Nombre de Français dans la zone Afrique Non Francophone")
+```
+
+
+Annexe 4 ( Évolution du nombre de Français dans la Zone Proche et Moyen-Orient ) :
+```{r}
+library(dplyr);
+library(reshape2);
+library(ggplot2);
+dataf<-read.csv("FrancaisE.csv",sep = ";")
+melt(dataf,id.vars = "ZoneGéographique.Année")%>%
+mutate(Année = as.integer(gsub("X","",variable)))%>%
+select(-variable)%>%
+rename(ZoneGéographique = ZoneGéographique.Année)%>%
+filter(ZoneGéographique=="Proche et Moyen-Orient")%>%
+ggplot(aes(x=as.factor(Année),y=value, colour = ZoneGéographique))+
+    geom_point()+
+    ylim(0,NA)+
+    geom_line() +
+    theme_dark() +
+    xlab("Année") +
+    ylab("Nombre de Français dans la zone Proche et Moyen-Orient")
+```
+
+
+
+Annexe 5 ( Évolution du nombre de Français dans la Zone Asie-Océanie ) : 
+```{r}
+library(dplyr);
+library(reshape2);
+library(ggplot2);
+dataf<-read.csv("FrancaisE.csv",sep = ";")
+melt(dataf,id.vars = "ZoneGéographique.Année")%>%
+mutate(Année = as.integer(gsub("X","",variable)))%>%
+select(-variable)%>%
+rename(ZoneGéographique = ZoneGéographique.Année)%>%
+filter(ZoneGéographique=="Asie-Océanie")%>%
+ggplot(aes(x=as.factor(Année),y=value, colour = ZoneGéographique))+
+    geom_point()+
+    ylim(0,NA)+
+    geom_line() +
+    theme_dark() +
+    xlab("Année") +
+    ylab("Nombre de Français dans la zone Asie-Océanie")
+```
+
+Annexe 6 (Évolution du nombre de Français dans la Zone Europe hors UE ) : 
+```{r}
+library(dplyr);
+library(reshape2);
+library(ggplot2);
+dataf<-read.csv("FrancaisE.csv",sep = ";")
+melt(dataf,id.vars = "ZoneGéographique.Année")%>%
+mutate(Année = as.integer(gsub("X","",variable)))%>%
+select(-variable)%>%
+rename(ZoneGéographique = ZoneGéographique.Année)%>%
+filter(ZoneGéographique=="Europe hors UE")%>%
+ggplot(aes(x=as.factor(Année),y=value, colour = ZoneGéographique))+
+    geom_point()+
+    ylim(0,NA)+
+    geom_line() +
+    theme_dark() +
+    xlab("Année") +
+    ylab("Nombre de Français dans la zone Europe hors UE")
+```
+
+Annexe 7 (Évolution du nombre de Français dans la Zone Union Européenne ) :
+```{r}
+library(dplyr);
+library(reshape2);
+library(ggplot2);
+dataf<-read.csv("FrancaisE.csv",sep = ";")
+melt(dataf,id.vars = "ZoneGéographique.Année")%>%
+mutate(Année = as.integer(gsub("X","",variable)))%>%
+select(-variable)%>%
+rename(ZoneGéographique = ZoneGéographique.Année)%>%
+filter(ZoneGéographique=="Union Européenne")%>%
+ggplot(aes(x=as.factor(Année),y=value, colour = ZoneGéographique))+
+    geom_point()+
+    ylim(0,NA)+
+    geom_line() +
+    theme_dark() +
+    xlab("Année") +
+    ylab("Nombre de Français dans la zone Union Européenne")
+```
+
+
+Annexe 8 ( Évolution du nombre de Français dans la Zone Amérique Centrale-Sud ) :
+```{r}
+library(dplyr);
+library(reshape2);
+library(ggplot2);
+dataf<-read.csv("FrancaisE.csv",sep = ";")
+melt(dataf,id.vars = "ZoneGéographique.Année")%>%
+mutate(Année = as.integer(gsub("X","",variable)))%>%
+select(-variable)%>%
+rename(ZoneGéographique = ZoneGéographique.Année)%>%
+filter(ZoneGéographique=="Amérique Centrale-Sud")%>%
+ggplot(aes(x=as.factor(Année),y=value, colour = ZoneGéographique))+
+    geom_point()+
+    ylim(0,NA)+
+    geom_line() +
+    theme_dark() +
+    xlab("Année") +
+    ylab("Nombre de Français dans la zone Amérique Centrale-Sud")
+```
+
+
+Annexe 9 ( Évolution du nombre de Français dans la Zone Amérique du Nord ) :
+```{r}
+library(dplyr);
+library(reshape2);
+library(ggplot2);
+dataf<-read.csv("FrancaisE.csv",sep = ";")
+melt(dataf,id.vars = "ZoneGéographique.Année")%>%
+mutate(Année = as.integer(gsub("X","",variable)))%>%
+select(-variable)%>%
+rename(ZoneGéographique = ZoneGéographique.Année)%>%
+filter(ZoneGéographique=="Amérique du Nord")%>%
+ggplot(aes(x=as.factor(Année),y=value, colour = ZoneGéographique))+
+    geom_point()+
+    ylim(0,NA)+
+    geom_line() +
+    theme_dark() +
+    xlab("Année") +
+    ylab("Nombre de Français dans la zone Amérique du Nord")
+```
+
+

@@ -1,13 +1,12 @@
 ---
-title: "ProjetFinal"
+title: "Projet Final : Les Français de l'étranger"
 output:
   pdf_document: default
   html_document: default
 ---
 Projet Final de Modèle Statistique Alexandre Lecuyer-Adlane Badr Lakhdari
 
-                                                      Les Français de l'étranger
-
+                                  
 Le jeu de donnée récupérer concerne les Français à l'étranger publié sur le site du Gouvernement Français "https://www.data.gouv.fr/fr/datasets/francais-de-l-etranger-inscriptions-au-registre-des-francais-etablis-hors-de-france-2001-2013/". Ces données ont été collectés par le Ministère des Affaires étrangères ( Direction des Français de l'étranger et de l'administration consulaire ).
 Les données contenues dans ces tableaux ont été récupéré via l'inscription au Registre, une démarche volontaire ouverte aux Français résidant à l'étranger, s'effectuant auprès du réseau des ambassades et consulats français. Toutefois, les Français ne s'étant pas inscrit n'apparaissent donc pas dans le jeu donnée.
 Il est intéressant de regarder comment évolue ces chiffres sur une période donnée ( 2001-2013). Ce fichier récupérer, il a été modifié, les pays sont regroupés par zones géographiques ( zone définis par l'ONU ).
@@ -42,7 +41,6 @@ select(-variable)%>%
 rename(ZoneGéographique = ZoneGéographique.Année)
 ```
 
-
 Le tableau ci-dessus affiche le nombre de français à l'étranger par zone et par année.
 
 Le graphe ci-dessous, montre les différentes évolutions des Français sur la période 2001-2013 selon les différentes zones géographiques.
@@ -75,6 +73,8 @@ ggplot(aes(x=as.factor(Année),y=value, colour=ZoneGéographique))+
 
 Ce graphe nous montre l'évolution total du nombre de Français à l'étranger au cours de la période 2001-2013.
 On remarque que l'évolution du nombre de français à l'étranger est globalement assimilable à une courbe strictement croissante. Toutefois, l'année 2007 fait office de baisse.
+
+
 
 ```{r}
 library(dplyr);
@@ -110,11 +110,6 @@ Cependant, on constate les limites de notre jeu de donnée :
 Le jeu de données étant relativement simpliste qui montre seulement un nombre de personnes sans aucune information sur ces dites personne (sexe,age,catégorie socio-professionelle, raison du départ), nous ne pouvons donc apporter une réponse satisfaisante, claire et précise sur comment à évoluer le nombre de français à l'étranger sur la période 2001-2013.
 
 En conclusion, comme il a été dit dans notre analyse, la réponse à la question de l'évolution des Français à l'étranger est trop simple, non complète. Le jeu de donnée ne permet absolument une bonne analyse de la question, une connaissance approfondie des personnes inscrites et du nombre exact de français résidant à l'étranger. 
-
-
-
-
-
 
 
 Les graphes suivant ( les annexes 1 à 9 ), quand à eux, affiche le nombre de français à l'étranger par année pour une zone ciblée ( soit 9 zones ).
